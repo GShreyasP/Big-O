@@ -2,7 +2,7 @@
 Student information for this assignment:
 
 Replace <FULL NAME> with your name.
-On my/our honor, <FULL NAME> and <FULL NAME>, this 
+On my/our honor, Guru Shreyas Potta and Ray Arcand, this 
 programming assignment is my own work and I have not provided this code to 
 any other student.
 
@@ -14,12 +14,11 @@ Students. Academic penalties up to and including an F in the course are likely.
 
 
 
-UT EID 1:
-UT EID 2:
+UT EID 1: gp23568
+UT EID 2: ra42693
 """
 
 
-# TODO: implement this function. You may delete this comment when you are done.
 def length_of_longest_substring_n3(s):
     """
     Finds the length of the longest substring without repeating characters
@@ -29,10 +28,27 @@ def length_of_longest_substring_n3(s):
     post: Returns an integer >= 0 representing the length of the longest substring
           in s that contains no repeating characters.
     """
-    pass
+    n = len(s)
+    hold = [""]
+
+    for i in range(n):
+        temp = s[i]
+        for j in range(i+1, n):
+            temp += s[j]
+            hold.append(temp)
+        if n == 1:
+            hold.append(temp)
+    m = len(hold)
+    for k in range(m):
+        word = hold[k]
+        for l in range(len(word)):
+            if word.count(s[l]) > 1:
+                hold[k] = 0
+        if hold[k] != 0:
+            hold[k] = len(hold[k])
+    return max(hold)
 
 
-# TODO: implement this function. You may delete this comment when you are done.
 def length_of_longest_substring_n2(s):
     """
     Finds the length of the longest substring without repeating characters
@@ -44,10 +60,21 @@ def length_of_longest_substring_n2(s):
     post: Returns an integer >= 0 representing the length of the longest substring
           in s that contains no repeating characters.
     """
-    pass
+
+    n = len(s)
+    longest = 0
+    for i in range(n):
+        tracker = [0] * 256
+        for j in range(i, n):
+            if tracker[ord(s[j])] != 1:
+                tracker[ord(s[j])] = 1
+            else:
+                break
+            if (j-i+1) > longest:
+                longest = j-i+1
+    return longest
 
 
-# TODO: implement this function. You may delete this comment when you are done.
 def length_of_longest_substring_n(s):
     """
     Finds the length of the longest substring without repeating characters
@@ -61,4 +88,15 @@ def length_of_longest_substring_n(s):
     post: Returns an integer >= 0 representing the length of the longest substring
           in s that contains no repeating characters.
     """
-    pass
+    n = len(s)
+    longest = 0
+    for i in range(n):
+        tracker = [0] * 256
+        for j in range(i, n):
+            if tracker[ord(s[j])] != 1:
+                tracker[ord(s[j])] = 1
+            else:
+                break
+            if (j-i+1) > longest:
+                longest = j-i+1
+    return longest
