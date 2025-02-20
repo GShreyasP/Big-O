@@ -63,14 +63,18 @@ def length_of_longest_substring_n2(s):
 
     n = len(s)
     longest = 0
+    duplicate_bool = False
     for i in range(n):
         tracker = [0] * 256
+        duplicate_bool = False
         for j in range(i, n):
             if tracker[ord(s[j])] != 1:
                 tracker[ord(s[j])] = 1
             else:
-                break
-            longest = max(longest, tracker.count(1))
+                tracker[ord(s[j])] += 1
+                duplicate_bool = True
+            if not duplicate_bool:
+                longest = max(longest, j-i+1)
     return longest
 
 
