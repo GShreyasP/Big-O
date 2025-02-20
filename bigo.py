@@ -70,8 +70,8 @@ def length_of_longest_substring_n2(s):
                 tracker[ord(s[j])] = 1
             else:
                 break
-            if (j-i+1) > longest:
-                longest = j-i+1
+            if tracker.count(1) > longest:
+                longest = tracker.count(1)
     return longest
 
 
